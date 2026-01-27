@@ -2,11 +2,21 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model Cliente {
+  id            String   @id @default(uuid())
+  nombre        String
+  apellido      String
+  segundo_apellido String?
+  email         String
+  estado        Boolean
+  fechaCreacion DateTime @default(now())
+  //TODO: agregar opcionales...
 }
