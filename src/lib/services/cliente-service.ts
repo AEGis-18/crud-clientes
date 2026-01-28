@@ -18,6 +18,23 @@ export async function getAllClientes() {
 }
 
 //TODO mail, nombres
-export async function getClientes() {
-  return await prisma.cliente.findMany();
+export async function getClientes({
+  nombre,
+  email,
+}: {
+  nombre: string | null;
+  email: string | null;
+}) {
+  console.log(typeof nombre);
+  return await prisma.cliente.findMany({
+    //PARA BASE DE DATOS CASE SENSITIVE
+    // where: {
+    //   nombre: nombre ? { contains: nombre, mode: "insensitive" } : undefined,
+    //   email: email ? { contains: email, mode: "insensitive" } : undefined,
+    // },
+    where: {
+      nombre: nombre ? { contains: nombre } : undefined,
+      email: email ? { contains: email } : undefined,
+    },
+  });
 }

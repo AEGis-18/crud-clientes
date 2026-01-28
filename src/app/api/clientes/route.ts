@@ -2,10 +2,12 @@ import {
   createClienteData,
   deleteClienteData,
   getAllClientes,
+  getClientes,
 } from "@/lib/services/cliente-service";
 import { clienteSchema } from "@/lib/zod";
 import { Prisma } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { NextApiRequest } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 //TODO: definir tipo de request
 export async function POST(request: Request) {
@@ -44,26 +46,15 @@ export async function POST(request: Request) {
   }
 }
 
-export async function PATCH(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const body = await request.json();
+    const { searchParams } = request.nextUrl;
+    const nombre = searchParams.get("nombre");
+    const email = searchParams.get("email");
 
-    if (!body.nombre || !body.email || !body.apellido) {
-      return NextResponse.json(
-        { error: "Faltan campos obligatorios." },
-        { status: 400 },
-      );
-    }
+    const clientes = await getClientes({ nombre, email });
 
-    const newCliente = await createClienteData({
-      nombre: body.nombre,
-      apellido: body.apellido,
-      segundo_apellido: body.segundo_apellido,
-      email: body.email,
-      estado: body.estado ?? true,
-    });
-
-    return NextResponse.json(newCliente, { status: 201 });
+    return NextResponse.json(clientes, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { error: "Error interno del servidor." },
@@ -72,15 +63,30 @@ export async function PATCH(request: Request) {
   }
 }
 
-export async function GET() {
-  try {
-    const clientes = await getAllClientes();
+// export async function PATCH(request: Request) {
+//   try {
+//     const body = await request.json();
 
-    return NextResponse.json(clientes, { status: 201 });
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Error interno del servidor." },
-      { status: 500 },
-    );
-  }
-}
+//     if (!body.nombre || !body.email || !body.apellido) {
+//       return NextResponse.json(
+//         { error: "Faltan campos obligatorios." },
+//         { status: 400 },
+//       );
+//     }
+
+//     const newCliente = await createClienteData({
+//       nombre: body.nombre,
+//       apellido: body.apellido,
+//       segundo_apellido: body.segundo_apellido,
+//       email: body.email,
+//       estado: body.estado ?? true,
+//     });
+
+//     return NextResponse.json(newCliente, { status: 201 });
+//   } catch (error) {
+//     return NextResponse.json(
+//       { error: "Error interno del servidor." },
+//       { status: 500 },
+//     );
+//   }
+// }
