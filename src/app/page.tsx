@@ -16,16 +16,12 @@ export default async function Home() {
   return (
     <div className="">
       Home Page
-      <div className="grid grid-cols-3">
+      <div className="grid grid-flow-col">
         {clientes?.map((cliente) => (
           <Card className="w-full max-w-sm" key={cliente.id}>
             <CardHeader>
               <CardTitle>
-                {cliente.nombre +
-                  " " +
-                  cliente.apellido +
-                  " " +
-                  cliente.segundo_apellido}
+                {`${cliente.nombre} ${cliente.apellido} ${cliente.segundo_apellido}`}
               </CardTitle>
             </CardHeader>
             <CardContent>

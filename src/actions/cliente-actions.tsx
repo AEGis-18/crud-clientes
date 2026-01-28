@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { clienteSchema } from "@/lib/zod";
 
 export async function crearCliente(formData: FormData) {
   const nombre = formData.get("nombre")?.toString();
@@ -11,21 +12,21 @@ export async function crearCliente(formData: FormData) {
   const email = formData.get("email")?.toString();
   const estado = formData.get("estado") === "on";
 
-  console.log({ nombre, email, apellido, segundoApellido, estado });
-
-  if (!nombre || !email || !apellido) return;
-
-  const newCliente = await prisma.cliente.create({
-    data: {
-      nombre: nombre,
-      email: email,
-      apellido: apellido,
-      segundo_apellido: segundoApellido,
-      estado: estado,
-    },
+  const cliente = clienteSchema.safeParse({
+    nombre,
+    apellido,
+    segundoApellido,
+    email,
+    estado,
   });
 
-  console.log(newCliente);
+  if (!cliente.success) return;
+
+  const newCliente = await prisma.cliente.create({
+    data: cliente.data,
+  });
+
+  // console.log(newCliente);
   redirect("/");
 }
 
