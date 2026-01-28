@@ -1,10 +1,10 @@
-import CrearForm from "./crear-form";
+import FormularioCliente from "./formulario-cliente";
 
 export default function Page() {
   return (
     <>
       <div className="flex justify-center items-center h-screen">
-        <CrearForm />
+        <FormularioCliente />
       </div>
     </>
   );

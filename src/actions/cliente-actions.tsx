@@ -38,3 +38,30 @@ export async function eliminarCliente(formData: FormData) {
   await prisma.cliente.delete({ where: { id: idCliente } });
   revalidatePath("/");
 }
+
+export async function actualizarCliente(formData: FormData) {
+  const idCliente = formData.get("id-cliente")?.toString();
+  const nombre = formData.get("nombre")?.toString();
+  const apellido = formData.get("apellido")?.toString();
+  const segundoApellido = formData.get("segundo-apellido")?.toString();
+  const email = formData.get("email")?.toString();
+  const estado = formData.get("estado") === "on";
+  // const fechaActualizacion = Date.now();
+
+  if (!nombre || !email || !apellido || !idCliente) return;
+
+  const newCliente = await prisma.cliente.update({
+    where: { id: idCliente },
+    data: {
+      nombre: nombre,
+      email: email,
+      apellido: apellido,
+      segundo_apellido: segundoApellido,
+      estado: estado,
+      //fechaActualizacion:fechaActualizacion
+    },
+  });
+
+  console.log(newCliente);
+  redirect("/");
+}
