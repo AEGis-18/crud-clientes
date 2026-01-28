@@ -7,7 +7,7 @@ function NavBar() {
       <h1>Prueba</h1>
       <div className="flex gap-x-2 items-center">
         <Link
-          href="/crear"
+          href="clientes/crear"
           className={buttonVariants({ variant: "secondary" })}
         >
           Crear Empleado
