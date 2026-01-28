@@ -10,7 +10,7 @@ function NavBar() {
           href="/clientes/crear"
           className={buttonVariants({ variant: "secondary" })}
         >
-          Crear Empleado
+          Crear cliente
         </Link>
       </div>
     </nav>

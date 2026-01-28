@@ -9,19 +9,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import prisma from "@/lib/prisma";
+import TablaClientes from "./tabla-clientes";
 
 export default async function Home() {
   const clientes = await prisma?.cliente.findMany();
 
   return (
     <div className="">
-      Home Page
+      {/* Home Page
       <div className="grid grid-flow-col">
         {clientes?.map((cliente) => (
           <Card className="w-full max-w-sm" key={cliente.id}>
             <CardHeader>
               <CardTitle>
-                {`${cliente.nombre} ${cliente.apellido} ${cliente.segundo_apellido}`}
+                {`${cliente.nombre} ${cliente.apellido} ${cliente?.segundo_apellido}`}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -35,7 +36,8 @@ export default async function Home() {
             </CardFooter>
           </Card>
         ))}
-      </div>
+      </div> */}
+      <TablaClientes></TablaClientes>
     </div>
   );
 }
