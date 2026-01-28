@@ -19,8 +19,6 @@ export default async function EditarCliente({
     redirect("/404");
   }
 
-  console.log(cliente.nombre);
-
   return (
     <>
       <div className="flex justify-center items-center h-screen">

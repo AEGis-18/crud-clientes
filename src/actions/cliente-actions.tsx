@@ -4,6 +4,10 @@ import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { clienteSchema } from "@/lib/zod";
+import {
+  createClienteData,
+  deleteClienteData,
+} from "@/lib/services/cliente-service";
 
 export async function crearCliente(formData: FormData) {
   const nombre = formData.get("nombre")?.toString();
@@ -22,11 +26,8 @@ export async function crearCliente(formData: FormData) {
 
   if (!cliente.success) return;
 
-  const newCliente = await prisma.cliente.create({
-    data: cliente.data,
-  });
+  await createClienteData(cliente.data);
 
-  // console.log(newCliente);
   redirect("/");
 }
 
@@ -36,7 +37,7 @@ export async function eliminarCliente(formData: FormData) {
   if (!idCliente) return;
 
   console.log(idCliente);
-  await prisma.cliente.delete({ where: { id: idCliente } });
+  await deleteClienteData(idCliente);
   revalidatePath("/");
 }
 

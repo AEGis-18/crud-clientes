@@ -1,7 +1,9 @@
 import {
   createClienteData,
-  obtenerClientes,
+  deleteClienteData,
+  getAllClientes,
 } from "@/lib/services/cliente-service";
+import { clienteSchema } from "@/lib/zod";
 import { NextResponse } from "next/server";
 
 //TODO: definir tipo de request
@@ -9,22 +11,24 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    if (!body.nombre || !body.email || !body.apellido) {
-      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+    const cliente = clienteSchema.safeParse(body);
+
+    if (!cliente.success) {
+      return NextResponse.json(
+        {
+          message: "Campos no válidos.",
+          errors: cliente.error.flatten().fieldErrors,
+        },
+        { status: 400 },
+      );
     }
 
-    const newCliente = await createClienteData({
-      nombre: body.nombre,
-      apellido: body.apellido,
-      segundo_apellido: body.segundo_apellido,
-      email: body.email,
-      estado: body.estado ?? true,
-    });
+    const newCliente = await createClienteData(cliente.data);
 
     return NextResponse.json(newCliente, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: "Error interno del servidor" },
       { status: 500 },
     );
   }
@@ -34,8 +38,11 @@ export async function PATCH(request: Request) {
   try {
     const body = await request.json();
 
-    if (!body.nombre || !body.email) {
-      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+    if (!body.nombre || !body.email || !body.apellido) {
+      return NextResponse.json(
+        { error: "Faltan campos obligatorios." },
+        { status: 400 },
+      );
     }
 
     const newCliente = await createClienteData({
@@ -49,7 +56,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json(newCliente, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: "Error interno del servidor." },
       { status: 500 },
     );
   }
@@ -57,13 +64,14 @@ export async function PATCH(request: Request) {
 
 export async function GET() {
   try {
-    const clientes = await obtenerClientes();
+    const clientes = await getAllClientes();
 
     return NextResponse.json(clientes, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: "Error interno del servidor." },
       { status: 500 },
     );
   }
 }
+
