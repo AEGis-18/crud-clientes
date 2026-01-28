@@ -11,12 +11,15 @@ datasource db {
 }
 
 model Cliente {
+  //Cambiar a cuid
   id            String   @id @default(uuid())
+  //agregar CI
   nombre        String
   apellido      String
   segundo_apellido String?
-  email         String
-  estado        Boolean
+  email         String @unique
+  estado        Boolean 
   fechaCreacion DateTime @default(now())
+  fechaActualizacion DateTime @updatedAt
   //TODO: agregar opcionales...
 }

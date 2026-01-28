@@ -4,6 +4,7 @@ import {
   getAllClientes,
 } from "@/lib/services/cliente-service";
 import { clienteSchema } from "@/lib/zod";
+import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 //TODO: definir tipo de request
@@ -27,7 +28,16 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newCliente, { status: 201 });
   } catch (error) {
-    return NextResponse.json(
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === "P2002") {
+        return Response.json(
+          { error: "Hay un campo duplicado." },
+          { status: 400 },
+        );
+      }
+    }
+
+    return Response.json(
       { error: "Error interno del servidor" },
       { status: 500 },
     );
@@ -74,4 +84,3 @@ export async function GET() {
     );
   }
 }
-
