@@ -1,0 +1,551 @@
+{
+	"info": {
+		"_postman_id": "551fdb36-69d6-42db-a8f9-47dd7be8e1f5",
+		"name": "CLT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32870206"
+	},
+	"item": [
+		{
+			"name": "POST requests",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"nombre\": \"Juan\",\r\n    \"apellido\": \"Escobar\",\r\n    \"segundo_apellido\": \"Sequera\",\r\n    \"email\": \"juan.e@mail.com\",\r\n    \"estado\": true\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/clientes/"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"nombre\": \"Pedro\",\r\n    \"apellido\": \"Sequera\",\r\n    \"email\": \"pedro.s@mail.com\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/clientes/"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"nombre\": \"Lola\",\r\n    \"apellido\": \"Vargas\",\r\n    \"segundo_apellido\": \"\",\r\n    \"email\": \"lola.v@mail.com\",\r\n    \"estado\": false\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/clientes/"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"nombre\": \"Franciso\",\r\n    \"apellido\": \"Ruiz\",\r\n    \"segundo_apellido\": \"\",\r\n    \"email\": \"fr.ruiz@mail.com\",\r\n    \"estado\": true\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/clientes/"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"nombre\": \"Daniela\",\r\n    \"apellido\": \"Cartes\",\r\n    \"segundo_apellido\": \"Sequera\",\r\n    \"email\": \"juan.e@mail.com\",\r\n    \"estado\": true\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/clientes/"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"nombre\": \"Dario\",\r\n    \"apellido\": \"Lopez\",\r\n    \"segundo_apellido\": \"Sequera\",\r\n    \"email\": \"darlos@mail.com\",\r\n    \"estado\": true\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/clientes/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET requests",
+			"item": [
+				{
+					"name": "Todos los clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar nombre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/clientes?nombre=Juan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Juan"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar mail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/clientes?email=juan.e@mail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "juan.e@mail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar mail inválido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/clientes?email=juan@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "juan@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ambos filtros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/clientes?email=juan@mail.com&nombre=juan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "juan@mail.com"
+								},
+								{
+									"key": "nombre",
+									"value": "juan"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PUT requests",
+			"item": [
+				{
+					"name": "Obtener ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respuesta = pm.response.json();\r",
+									"\r",
+									"const id_cliente = respuesta[0].id; \r",
+									"\r",
+									"pm.environment.set(\"id_cliente\", id_cliente);\r",
+									"\r",
+									"console.log(\"ID capturado con éxito: \" + id_cliente);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/clientes?nombre=Lola",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Lola"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar entrada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respuesta = pm.response.json();\r",
+									"\r",
+									"const id= respuesta.id; \r",
+									"\r",
+									"pm.environment.set(\"id_temporal\", id);\r",
+									"\r",
+									"console.log(\"Variable guardada: \" +id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"nombre\": \"Lola\",\r\n    \"apellido\": \"Vargas\",\r\n    \"segundo_apellido\": \"\",\r\n    \"email\": \"lola.v@mail.com\",\r\n    \"estado\": true\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/clientes/{{id_cliente}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener cambio Lola",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respuesta = pm.response.json();\r",
+									"\r",
+									"const id_cliente= respuesta.id; \r",
+									"\r",
+									"pm.environment.set(\"id_cliente\", id_cliente);\r",
+									"\r",
+									"console.log(\"Variable guardada: \" +id_cliente);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/clientes?nombre=Lolita",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Lolita"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE requests",
+			"item": [
+				{
+					"name": "Obtener ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respuesta = pm.response.json();\r",
+									"\r",
+									"const id_cliente = respuesta[0].id; \r",
+									"\r",
+									"pm.environment.set(\"id_cliente\", id_cliente);\r",
+									"\r",
+									"console.log(\"ID capturado con éxito: \" + id_cliente);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/clientes?nombre=Dario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Dario"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar entrada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respuesta = pm.response.json();\r",
+									"\r",
+									"const id= respuesta.id; \r",
+									"\r",
+									"pm.environment.set(\"id_temporal\", id);\r",
+									"\r",
+									"console.log(\"Variable guardada: \" +id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"nombre\": \"Lola\",\r\n    \"apellido\": \"Vargas\",\r\n    \"segundo_apellido\": \"\",\r\n    \"email\": \"lola.v@mail.com\",\r\n    \"estado\": true\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/clientes/{{id_cliente}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Verificar Dario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const respuesta = pm.response.json();\r",
+									"\r",
+									"const id_cliente= respuesta.id; \r",
+									"\r",
+									"pm.environment.set(\"id_cliente\", id_cliente);\r",
+									"\r",
+									"console.log(\"Variable guardada: \" +id_cliente);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/clientes?nombre=Dario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Dario"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
