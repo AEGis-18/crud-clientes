@@ -16,7 +16,7 @@ export async function DELETE(
 
     return NextResponse.json(
       { message: "Cliente eliminado ", clienteElim },
-      { status: 201 },
+      { status: 200 },
     );
   } catch (error: any) {
     if (error.code === "P2025") {
@@ -56,7 +56,7 @@ export async function PUT(
 
     return NextResponse.json(
       { message: "Cliente actualizado.", clienteActualizado },
-      { status: 201 },
+      { status: 200 },
     );
   } catch (error: any) {
     if (error.code === "P2025") {
