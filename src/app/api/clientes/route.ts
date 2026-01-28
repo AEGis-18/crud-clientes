@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === "P2002") {
         return Response.json(
-          { error: "Hay un campo duplicado." },
+          { error: "El mail no es válido" },
           { status: 400 },
         );
       }
